@@ -114,7 +114,12 @@ The build is statically linked &mdash; no external runtime DLLs (no
 
 ## License
 
-[MIT](LICENSE) &mdash; do whatever you want with it.
+**All Rights Reserved** &mdash; see [LICENSE](LICENSE).
+
+You are free to download a release build and use it as a Skyrim mod on
+your own machine. Copying, modifying, redistributing, or bundling this
+software (binary or source) with any other project requires prior written
+permission from the author.
 
 ## Author
 

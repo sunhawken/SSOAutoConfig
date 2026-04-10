@@ -1,21 +1,36 @@
-MIT License
+Copyright (c) 2026 sunhawken (Young Jonii)
+All Rights Reserved.
 
-Copyright (c) 2026 sunhawken
+This software and its source code are the exclusive property of the
+copyright holder. No license, express or implied, is granted to any
+party by the publication of this software on GitHub or anywhere else.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+PERMITTED
+---------
+You may download a release build of this software for personal,
+non-commercial use as a Skyrim mod on your own machine.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+NOT PERMITTED (without prior written permission from the copyright holder)
+--------------------------------------------------------------------------
+- Copying, mirroring, or republishing the source code or any portion of it
+- Modifying the source code or creating derivative works
+- Redistributing the binary, the source, or any modified version
+- Bundling this software with any other mod, modpack, collection, or product
+- Using any portion of the source code in another project, open or closed
+- Commercial use of any kind, including paid Patreon or "early access" tiers
+- Reverse engineering or decompiling the binary for the purpose of reuse
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+Contributions submitted via pull request are accepted only under the
+condition that the contributor assigns full copyright of the contribution
+to the copyright holder.
+
+For permission requests, contact the author through GitHub
+(https://github.com/sunhawken).
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
