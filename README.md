@@ -23,20 +23,35 @@ left alone.
 
 ## Requirements
 
-- Skyrim Special Edition 1.6.317 or newer (uses Address Library)
+### Skyrim Special Edition / Anniversary Edition
+- Skyrim SE 1.6.317 or newer
 - [SKSE](https://skse.silverlock.org/) matching your game version
 - [Address Library for SKSE Plugins](https://www.nexusmods.com/skyrimspecialedition/mods/32444)
 - [Skyrim Save System Overhaul 3](https://www.nexusmods.com/skyrimspecialedition/mods/122343)
+
+### Skyrim VR
+- Skyrim VR 1.4.15.0
+- [SKSE VR](https://skse.silverlock.org/)
+- [Address Library for SkyrimVR](https://www.nexusmods.com/skyrimspecialedition/mods/58101)
+  (the `version-1-4-15-0.csv` file in `Data/SKSE/Plugins/`)
+- SSSO3 &mdash; if an SSSO3 VR build exists, otherwise the plugin will still
+  run harmlessly but the generated config files won't be consumed
 
 ## Installation
 
 Grab the latest `SSSOAutoConfig-*.zip` from the [Releases](https://github.com/sunhawken/SSOAutoConfig/releases)
 page and drop the contents into your Skyrim install, or install the zip with
-Vortex / Mod Organizer 2 like any other mod. The DLL lives at:
+Vortex / Mod Organizer 2 like any other mod. A single DLL works for both
+Skyrim SE/AE and Skyrim VR; install it under the appropriate game:
 
 ```
-<Skyrim>/Data/SKSE/Plugins/SSSOAutoConfig.dll
+<Skyrim SE>/Data/SKSE/Plugins/SSSOAutoConfig.dll
+<Skyrim VR>/Data/SKSE/Plugins/SSSOAutoConfig.dll
 ```
+
+The plugin auto-detects which runtime it is loaded into via
+`REL::Module::IsVR()` and uses the correct `My Games` subfolder
+(`Skyrim Special Edition` vs `Skyrim VR`) when scanning for saves.
 
 ## How it works
 
@@ -88,9 +103,16 @@ cmake --preset release
 cmake --build build --preset release
 ```
 
-The DLL is produced at `build/Release/SSSOAutoConfig.dll`. If you set the
-`SKYRIM_FOLDER` cache variable in `CMakePresets.json`, the post-build step
-will copy it directly into your Skyrim `Data/SKSE/Plugins/` folder.
+The DLL is produced at `build/Release/SSSOAutoConfig.dll`. Post-build copy
+steps deploy it automatically when you set either or both of these cache
+variables in `CMakePresets.json`:
+
+- `SKYRIM_FOLDER`   &mdash; your Skyrim SE install root
+- `SKYRIMVR_FOLDER` &mdash; your Skyrim VR install root
+
+Both point at the game directory (not `Data/`); the build appends
+`Data/SKSE/Plugins/` automatically. A single DLL works for both games
+thanks to CommonLibSSE-NG's multi-runtime support.
 
 The build is statically linked &mdash; no external runtime DLLs (no
 `spdlog.dll`, no `fmt.dll`, no MSVC runtime).
@@ -98,6 +120,7 @@ The build is statically linked &mdash; no external runtime DLLs (no
 ## Compatibility
 
 - Skyrim SE 1.6.317 through 1.6.1179+ (Address Library handles version drift)
+- Skyrim VR 1.4.15.0 (requires Address Library for SkyrimVR)
 - Works alongside any other SKSE plugins
 - Does not modify game records, scripts, or any other files
 - Safe to install or remove at any time
@@ -110,7 +133,8 @@ The build is statically linked &mdash; no external runtime DLLs (no
 - If your character name contains filesystem-invalid characters
   (`< > : " / \ | ? *`), the config file cannot be created. Use SSSO3's
   built-in "Bypass Check" option instead.
-- Logs go to `Documents/My Games/Skyrim Special Edition/SKSE/SSSOAutoConfig.log`.
+- Logs go to `Documents/My Games/Skyrim Special Edition/SKSE/SSSOAutoConfig.log`
+  on SE, or `Documents/My Games/Skyrim VR/SKSE/SSSOAutoConfig.log` on VR.
 
 ## License
 
