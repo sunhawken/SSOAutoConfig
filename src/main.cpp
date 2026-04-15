@@ -110,7 +110,9 @@ namespace {
     }
 
     // Write Data/SSSOConf/{name}.txt with the character ID.
-    // Skips when a valid (non-"notset") config already exists.
+    // If the file already contains the correct ID it is left alone.
+    // If the file is missing, contains "notset", or has a stale/wrong
+    // ID, it is (re-)created with the current ID.
     void WriteConfigFile(std::string_view playerName, std::string_view characterID) {
         auto configDir = GetGameRoot() / "Data" / "SSSOConf";
 
@@ -130,17 +132,20 @@ namespace {
         }
         auto path = configDir / (wideName + L".txt");
 
+        // Check whether the existing file already has the right ID.
         if (fs::exists(path)) {
             std::ifstream in(path);
             std::string buf((std::istreambuf_iterator<char>(in)),
                              std::istreambuf_iterator<char>());
-            if (buf.find("notset") == std::string::npos) {
-                SKSE::log::trace("Config for '{}' already valid", playerName);
+            if (buf.find(characterID) != std::string::npos) {
+                SKSE::log::trace("Config for '{}' already up-to-date", playerName);
                 return;
             }
+            // Stale, wrong, or "notset" — will be overwritten below.
+            SKSE::log::info("Updating stale config for '{}'", playerName);
         }
 
-        std::ofstream out(path);
+        std::ofstream out(path, std::ios::trunc);
         if (!out) {
             SKSE::log::error("Cannot write config for '{}'", playerName);
             return;
@@ -150,7 +155,7 @@ namespace {
             << characterID
             << "\"\n    }\n}";
 
-        SKSE::log::info("Created SSSO config: '{}' -> '{}'", playerName, characterID);
+        SKSE::log::info("Wrote SSSO config: '{}' -> '{}'", playerName, characterID);
     }
 
     // Core logic: look up current player's character ID and write the config.
