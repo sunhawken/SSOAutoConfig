@@ -236,7 +236,7 @@ SKSEPluginLoad(const SKSE::LoadInterface* a_skse) {
     InitLogging();
     SKSE::Init(a_skse);
 
-    SKSE::log::info("SSSOAutoConfig v1.0.0 loaded ({})",
+    SKSE::log::info("SSSOAutoConfig v1.0.4 loaded ({})",
         REL::Module::IsVR() ? "VR" : "SSE");
 
     const auto* messaging = SKSE::GetMessagingInterface();
